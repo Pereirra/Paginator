@@ -1,20 +1,19 @@
 <?php
 class MySqlAdapter implements AdapterInterface {
-	private $_dataname;
+	private $_sql;
 
-	public function __construct($dataname) {
-		$this->_dataname = $dataname;
+	public function __construct($sql) {
+		$this->_sql = $sql;
 	}
 
 	public function getNumResults() {
-		$sql = sprintf("SELECT columnname FROM %s", $this->_dataname);
 
 		//link database and execute $sql
 		//return the results
 	}
 
 	public function getSlice($offset, $length){
-
+		
 	}
 }
 ?>

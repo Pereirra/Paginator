@@ -5,8 +5,8 @@ class DefaultView implements ViewInterface {
 			'previous_message' => 'Previous',
 			'next_message' => 'Next',
 			'css_disabled_class' => 'disabled',
-            'css_dots_class' => 'dots',
-            'css_current_class' => 'current',
+			'css_dots_class' => 'dots',
+			'css_current_class' => 'current',
 			), $options);
 
 		$currentPage = $paginator->getCurrentPage();
