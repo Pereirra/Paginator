@@ -2,8 +2,8 @@
 class DefaultView implements ViewInterface {
 	public function render(Paginator $paginator, $routeGenerator, array $options = array()) {
 		$options = array_merge(array(
-			'previous_message' => 'Previous',
-			'next_message' => 'Next',
+			'previous_text' => 'Previous',
+			'next_text' => 'Next',
 			'css_disabled_class' => 'disabled',
 			'css_dots_class' => 'dots',
 			'css_current_class' => 'current',
@@ -17,10 +17,10 @@ class DefaultView implements ViewInterface {
 
 		//whether there is previous page or not
 		if ($paginator->hasPreviousPage()) {
-			$pages[] = array($paginator->getPreviousPage(), $options['previous_message']);
+			$pages[] = array($paginator->getPreviousPage(), $options['previous_text']);
 		} else {
 			$pages[] = sprintf('<span class="%s">%s</span>',
-						$options['css_disabled_class'], $options['previous_message']);
+						$options['css_disabled_class'], $options['previous_text']);
 		}
 
 		for ($page = $startPage; $page <= $endPage; $page++) {
@@ -33,9 +33,9 @@ class DefaultView implements ViewInterface {
 		}
 		//whether there is next page or not
 		if ($paginator->hasNextPage()) {
-            $pages[] = array($paginator->getNextPage(), $options['next_message']);
+            $pages[] = array($paginator->getNextPage(), $options['next_text']);
         } else {
-            $pages[] = sprintf('<span class="%s">%s</span>', $options['css_disabled_class'], $options['next_message']);
+            $pages[] = sprintf('<span class="%s">%s</span>', $options['css_disabled_class'], $options['next_text']);
         }
 
         //deal with page's url

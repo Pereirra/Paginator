@@ -39,17 +39,6 @@ class Paginator {
 		return $this->_currentPage;
 	}
 
-	//return the results for the current page
-	public function getCurrentPageResults() {
-		if ($this->_currentPageResults === null) {
-			$offset = ($this->getCurrentPage() - 1) * $this->getItemsPerPage();
-			$length = $this->getItemsPerPage;
-			$this->_currentPageResults = $this->_adapter->getSlice($offset, $length);
-		}
-
-		return $this->_currentPageResults;
-	}
-
 	//return the number of results
 	public function getNumResults() {
 		if ($this->_totalItems === null) {
