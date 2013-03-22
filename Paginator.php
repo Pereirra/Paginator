@@ -118,6 +118,8 @@ class Paginator {
 		return (int) $this->offset;
 	}
 
-	public function makeUrl() {}
+	public function makeUrl() {
+		
+	}
 }
 ?>

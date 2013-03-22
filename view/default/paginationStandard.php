@@ -6,7 +6,7 @@
 		<li><span>Previous</span></li>
 	<?php } ?>
 
-	<?php for ($page=$this->getFirstPage; $page < $this->getLastPages(); $page++) {
+	<?php for ($page=$this->getFirstPage(); $page < $this->getLastPages(); $page++) {
 		if ($page === $this->getCurrentPage()) { ?>
 		<li><a href="#"><?php echo $page; ?></a></li>
 	<?php } else { ?>
