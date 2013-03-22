@@ -1,5 +1,3 @@
-
-
 <div class="pagination standard">
 	<ul>
 	<?php if ($this->hasPervious()) {?>
