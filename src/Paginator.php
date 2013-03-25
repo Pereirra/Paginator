@@ -64,7 +64,7 @@ class Paginator {
 	//return whether have to paginate or not
 	public function haveToPaginate() {
 
-		return $this->getNumResults() > $this->itemsPerPage; 
+		return $this->getTotalItems() > $this->getNumItemsPerPage(); 
 	}
 
 	//return whether there is previous page or not

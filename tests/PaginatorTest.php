@@ -53,13 +53,25 @@ class PaginatorTest extends PHPUnit_Framework_TestCase {
 		$paginator = new Paginator($pageRang);
 		$this->assertSame(10, $paginator->getTotalPages());
 	}
-/*
+
+	//return whether have to paginate or not
+	public function testNotHaveToPaginate() {
+
+		$params = array('currentPage'=>5, 'numItemsPerPage'=>10, 'totalItems'=>1);
+		$pageRang = new PageRang($params);
+		$paginator = new Paginator($pageRang);
+		$this->assertFalse($paginator->haveToPaginate());
+	}
+
 	//return whether have to paginate or not
 	public function testHaveToPaginate() {
 
-		return $this->getNumResults() > $this->itemsPerPage; 
+		$params = array('currentPage'=>5, 'numItemsPerPage'=>10, 'totalItems'=>100);
+		$pageRang = new PageRang($params);
+		$paginator = new Paginator($pageRang);
+		$this->assertTrue($paginator->haveToPaginate());
 	}
-
+/*
 	//return whether there is previous page or not
 	public function testHasPreviousPage() {
 
