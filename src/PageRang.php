@@ -7,7 +7,6 @@ class PageRang {
 	protected $currentPage;
 
 	//$param = array($currentPage, $totalItemsPerPage, $totalItems)
-	//改为关联数组比较好
 	public function __construct(array $param = array()) {
 		$this->currentPage = ((int) $param['currentPage'] > 0) ? ((int) $param['currentPage']) : 1;
 		$this->numItemsPerPage = ((int) $param["numItemsPerPage"] >0 ) ? ((int) $param['numItemsPerPage']) : 10;
