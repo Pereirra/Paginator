@@ -6,7 +6,7 @@ class Paginator {
 	
 	//pages
 	protected $totalPages;
-	protected $currentPage;
+	protected $currentPage = 1;
 	protected $previousPage;
 	protected $nextPage;
 	protected $firstPage = 1;
@@ -70,40 +70,42 @@ class Paginator {
 	//return whether there is previous page or not
 	public function hasPreviousPage() {
 
-		return $this->currentPage > $this->getFirstPage();
+		return $this->getCurrentPage() > $this->getFirstPage();
 	}
 
 	//return the previous page
 	public function getPreviousPage() {
 
 		if ($this->hasPreviousPage()) {
-			return $this->currentPage - 1;
+			return $this->getCurrentPage() - 1;
 		} else {
-			throw new Exception("There is not previous page.");
-			exit();
+			//throw new Exception("There is not previous page.");
+			//exit();
+			return false;
 		}
 	}
 
 	//return whether there is next page or not
 	public function hasNextPage() {
 
-		return $this->currentPage < $this->getTotalPages();
+		return $this->getCurrentPage() < $this->getTotalPages();
 	}
 
 	//return the next page
 	public function getNextPage() {
 
 		if ($this->hasNextPage()) {
-			return $this->currentPage + 1;
+			return $this->getCurrentPage() + 1;
 		} else {
-			throw new Exception("There is not next page.");
-			exit();
+			//throw new Exception("There is not next page.");
+			//exit();
+			return false;
 		}
 	}
 
 	//return the first page
 	public function getFirstPage() {
-		return $this->firstPage;
+		return (int) $this->firstPage;
 	}
 
 	//return the last page
