@@ -1,31 +1,32 @@
 <?php
 class Paginator {
 	//items
-	protected $totalItems;
-	protected $numItemsPerPage;
+	protected $totalItems = 0;
+	protected $numItemsPerPage = 10;
 	
 	//pages
-	protected $totalPages;
+	protected $totalPages = 0;
 	protected $currentPage = 1;
-	protected $previousPage;
-	protected $nextPage;
+	protected $previousPage = null;
+	protected $nextPage = null;
 	protected $firstPage = 1;
-	protected $lastPage;
+	protected $lastPage = null;
 
 	//index
-	protected $offset;
+	protected $offset = null;
 
-	protected $isOutOfBounds;
+	protected $isOutOfBounds = false;
 
 	//url
 	protected $baseUrl;
 
 	//Constructor
-	public function __construct(PageRang $pageRang) {
+	//it not need class PageRang
+	public function __construct(array $param = array()) {
 
-		$this->totalItems 		= $pageRang->totalItems();
-		$this->currentPage 		= $pageRang->currentPage();
-		$this->numItemsPerPage  = $pageRang->numItemsPerPage();
+		$this->currentPage = ((int) $param['currentPage'] > 0) ? ((int) $param['currentPage']) : 1;
+		$this->numItemsPerPage = ((int) $param["numItemsPerPage"] >0 ) ? ((int) $param['numItemsPerPage']) : 10;
+		$this->totalItems = (int) $param['totalItems'];
 	}
 
 	//whether it is out of bounds or not
@@ -110,7 +111,7 @@ class Paginator {
 
 	//return the last page
 	public function getLastPage() {
-		return $this->lastPage;
+		return (int) $this->lastPage;
 	}
 
 	//return the index offset

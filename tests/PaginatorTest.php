@@ -1,14 +1,12 @@
 <?php
 require 'src/Paginator.php';
-require 'src/PageRang.php';
 
 class PaginatorTest extends PHPUnit_Framework_TestCase {
 
 	//test results under normal conditions
-	public function testCurrentPage100ItemsAndOnPage5() {
-		$params = array('currentPage'=>5, 'numItemsPerPage'=>10, 'totalItems'=>100);
-		$pageRang = new PageRang($params);
-		$paginator = new Paginator($pageRang);
+	public function test100ItemsAndOnPage5() {
+		$input = array('currentPage'=>5, 'numItemsPerPage'=>10, 'totalItems'=>100);
+		$paginator = new Paginator($input);
 		$this->assertFalse($paginator->isOutOfBounds());
 		$this->assertSame(10, $paginator->getNumItemsPerPage());
 		$this->assertSame(5, $paginator->getCurrentPage());
@@ -25,10 +23,9 @@ class PaginatorTest extends PHPUnit_Framework_TestCase {
 	}
 
 	//test results when on the last page
-	public function testCurrentPage100ItemsAndOnPage10() {
-		$params = array('currentPage'=>10, 'numItemsPerPage'=>10, 'totalItems'=>100);
-		$pageRang = new PageRang($params);
-		$paginator = new Paginator($pageRang);
+	public function test100ItemsAndOnPage10() {
+		$input = array('currentPage'=>10, 'numItemsPerPage'=>10, 'totalItems'=>100);
+		$paginator = new Paginator($input);
 		$this->assertFalse($paginator->isOutOfBounds());
 		$this->assertSame(10, $paginator->getNumItemsPerPage());
 		$this->assertSame(10, $paginator->getCurrentPage());
@@ -45,10 +42,9 @@ class PaginatorTest extends PHPUnit_Framework_TestCase {
 	}
 	
 	//test results when on the first page
-	public function testCurrentPage100ItemsAndOnPage1() {
-		$params = array('currentPage'=>1, 'numItemsPerPage'=>10, 'totalItems'=>100);
-		$pageRang = new PageRang($params);
-		$paginator = new Paginator($pageRang);
+	public function test100ItemsAndOnPage1() {
+		$input = array('currentPage'=>1, 'numItemsPerPage'=>10, 'totalItems'=>100);
+		$paginator = new Paginator($input);
 		$this->assertFalse($paginator->isOutOfBounds());
 		$this->assertSame(10, $paginator->getNumItemsPerPage());
 		$this->assertSame(1, $paginator->getCurrentPage());
@@ -62,6 +58,15 @@ class PaginatorTest extends PHPUnit_Framework_TestCase {
 		$this->assertFalse($paginator->getPreviousPage());
 		$this->assertSame(2, $paginator->getNextPage());
 		$this->assertSame(0, $paginator->getOffset());
+	}
+
+	//teste no items
+	public function testNoItems() {
+		$input = array('currentPage'=>1, 'numItemsPerPage'=>5, 'totalItems'=>0);
+		$paginator = new Paginator($input);
+		$this->assertSame(1, $paginator->getCurrentPage());
+		$this->assertSame(0, $paginator->getTotalItems());
+		$this->assertSame(0, $paginator->getTotalPages());
 	}
 	/*
 	public function testMakeUrl() {
