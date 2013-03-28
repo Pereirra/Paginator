@@ -1,5 +1,5 @@
 <?php
-include "../../Paginator.php";
+include "../../paginator.php";
 $input = array('currentPage'=>5, 'numItemsPerPage'=>10, 'totalItems'=>100);
 
 if ($_GET['page']) {
@@ -11,9 +11,7 @@ $page = $pager->getCurrentPage();
 
 $prevLabel = "Prev";
 $nextLabel = "Next";
-echo $pager->getTotalItems() . ' total Items<br />';
-echo $pager->getNumItemsPerPage() . 'numItemsPerPage<br />';
-echo $pager->getLastPage() . ' the last page';
+
 $url = $_SERVER['PHP_SELF'];
 ?>
 <div class="pagination pager">
