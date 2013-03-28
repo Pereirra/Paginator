@@ -1,5 +1,5 @@
 <?php
-require 'src/Paginator.php';
+include 'src/Paginator.php';
 
 class PaginatorTest extends PHPUnit_Framework_TestCase {
 

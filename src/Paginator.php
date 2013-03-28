@@ -2,18 +2,19 @@
 class Paginator {
 	//items
 	protected $totalItems = 0;
-	protected $numItemsPerPage = 10;
+	protected $numItemsPerPage = 2;
 	
 	//pages
-	protected $totalPages = 0;
+	protected $totalPages;
 	protected $currentPage = 1;
 	protected $previousPage = null;
 	protected $nextPage = null;
 	protected $firstPage = 1;
-	protected $lastPage = null;
+	//protected $lastPage = 0;
 
 	//index
 	protected $offset = null;
+	protected $adjacents = 3;
 
 	protected $isOutOfBounds = false;
 
@@ -21,12 +22,12 @@ class Paginator {
 	protected $baseUrl;
 
 	//Constructor
-	//it not need class PageRang
 	public function __construct(array $param = array()) {
 
 		$this->currentPage = ((int) $param['currentPage'] > 0) ? ((int) $param['currentPage']) : 1;
 		$this->numItemsPerPage = ((int) $param["numItemsPerPage"] >0 ) ? ((int) $param['numItemsPerPage']) : 10;
 		$this->totalItems = (int) $param['totalItems'];
+		$this->totalPages = $this->getTotalPages();
 	}
 
 	//whether it is out of bounds or not
@@ -34,6 +35,11 @@ class Paginator {
 
 		$this->isOutOfBounds = ($this->getCurrentPage() > $this->getTotalPages());
 		return $this->isOutOfBounds;
+	}
+
+	//return adjacent pages
+	public function getAdjacents() {
+		return $this->adjacents;
 	}
 
 	//return the items per page
@@ -57,7 +63,7 @@ class Paginator {
 	//return the number of pages
 	public function getTotalPages() {
 		
-		$this->totalPages = (int) ceil($this->getTotalItems() / $this->getNumItemsPerPage());
+		$this->totalPages = ceil( $this->getTotalItems() / $this->getNumItemsPerPage() );
 		$this->lastPage = $this->totalPages;
 		return $this->totalPages;
 	}
